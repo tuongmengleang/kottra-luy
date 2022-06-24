@@ -1,0 +1,55 @@
+{
+  "name": "nuxt3-awesome-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "a Nuxt 3 starter template or boilerplate with a lot of useful features. Nuxt3 + Tailwindcss 3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tuongmengleang/nuxt3-awesome-boilerplate"
+  },
+  "author": "tuongmengleang",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
+    "postinstall": "husky install",
+    "lint": "eslint --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@headlessui/vue": "^1.6.4",
+    "@iconify/json": "^2.1.63",
+    "@intlify/nuxt3": "^0.2.2",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/svg": "^0.4.0",
+    "@pinia/nuxt": "^0.1.9",
+    "@vueuse/nuxt": "^8.7.4",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.2",
+    "nuxt": "3.0.0-rc.4",
+    "nuxt-windicss": "^2.4.2",
+    "pinia": "^2.0.14",
+    "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.52.3",
+    "sass-loader": "^13.0.0",
+    "typescript": "^4.7.4",
+    "unplugin-icons": "^0.14.5",
+    "unplugin-vue-components": "^0.19.6"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue,html,css,scss}": [
+      "yarn lintfix"
+    ]
+  }
+}
