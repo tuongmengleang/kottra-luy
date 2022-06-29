@@ -9,8 +9,8 @@ export const useUI = defineStore('ui', {
     isOpenDrawer: false,
   }),
   actions: {
-    toggle() {
-      this.isOpenDrawer = !this.isOpenDrawer
+    open() {
+      this.isOpenDrawer = true
     },
     close() {
       this.isOpenDrawer = false

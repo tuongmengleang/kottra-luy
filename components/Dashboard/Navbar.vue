@@ -2,7 +2,14 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { useUI } from '~/stores/ui'
 const user = useSupabaseUser()
+const { auth } = useSupabaseClient()
 const ui = useUI()
+const router = useRouter()
+
+const signOut = async () => {
+  await auth.signOut()
+  router.push('/signin')
+}
 </script>
 
 <template>
@@ -14,10 +21,12 @@ const ui = useUI()
       <button
         type="button"
         class="text-xl hidden <sm:block"
-        @click.prevent="ui.toggle"
+        @click.prevent="ui.open"
       >
         <IconLineMd:menu />
       </button>
+
+      {{ ui.isOpenDrawer }}
 
       <!-- Avatar Dropdown -->
       <Menu as="div" class="relative ml-auto">
@@ -58,9 +67,10 @@ const ui = useUI()
                     active ? 'bg-blue-100 text-blue-600' : 'text-gray-900',
                     'group flex w-full items-center rounded-md px-2 py-2 text-md',
                   ]"
+                  @click="signOut"
                 >
                   <IconHeroicons-solid:logout class="mr-2 text-lg" />
-                  Log Out
+                  Sign Out
                 </button>
               </MenuItem>
             </div>

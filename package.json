@@ -50,7 +50,7 @@
     "unplugin-vue-components": "^0.19.6"
   },
   "lint-staged": {
-    "**/*.{js,ts,vue,html,css,scss}": [
+    "**/*.{js,ts,vue,html,css}": [
       "yarn lintfix"
     ]
   }

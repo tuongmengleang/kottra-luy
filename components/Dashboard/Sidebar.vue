@@ -8,7 +8,7 @@ const ui = useUI()
   <div
     ref="sidebar"
     v-click-outside="ui.close"
-    class="relative flex flex-col w-70 transition-all ease-in-out delay-150 duration-300 border-r border-gray-20 dark:border-gray-600 <sm:absolute <sm:h-full <sm:bg-white overflow-auto ease-in-out transition-all duration-300 z-30 <sm:transform"
+    class="relative flex flex-col w-70 transition-all ease-in-out delay-150 duration-300 border-r border-gray-20 dark:border-gray-600 dark:bg-black <sm:absolute <sm:h-full <sm:bg-white overflow-auto ease-in-out transition-all duration-300 z-30 <sm:transform"
     :class="ui.isOpenDrawer ? 'translate-x-0' : '<sm:-translate-x-full'"
   >
     <!-- Sidebar Logo -->
