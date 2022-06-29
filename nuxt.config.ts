@@ -39,6 +39,9 @@ export default defineNuxtConfig({
   // plugins
   plugins: ['~/plugins/navbar.ts'],
 
+  // modules
+  modules: ['@nuxtjs/supabase'],
+
   // build
   build: {
     transpile: ['@headlessui/vue'],
@@ -113,5 +116,11 @@ export default defineNuxtConfig({
       },
     },
     scan: true,
+  },
+
+  // Supabase
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
   },
 })

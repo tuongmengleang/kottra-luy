@@ -1,0 +1,40 @@
+<script lang="ts" setup>
+const props = defineProps({
+  color: {
+    type: String,
+    default: '',
+  },
+  size: {
+    type: String,
+    default: '40',
+  },
+  circle: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+// state:styles
+const defaultStyle = `
+  w-10 h-10 rounded-full overflow-hidden transition-all
+`
+
+const avatarSize = computed(() => props.size + 'px')
+</script>
+
+<template>
+  <div class="avatar" :class="`${defaultStyle}`">
+    <slot />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.avatar {
+  width: v-bind(avatarSize);
+  height: v-bind(avatarSize);
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+</style>

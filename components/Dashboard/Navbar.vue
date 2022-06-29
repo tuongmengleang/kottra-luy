@@ -1,65 +1,72 @@
+<script lang="ts" setup>
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { useUI } from '~/stores/ui'
+const user = useSupabaseUser()
+const ui = useUI()
+</script>
+
 <template>
-  <BuilderNavbar>
-    <template #menu>
-      <div class="relative hidden lg:flex items-center ml-auto">
-        <div class="flex items-center justify-center">
-          <img
-            class="w-6 h-6 rounded-full"
-            src="https://avatars.githubusercontent.com/u/56217606?v=4"
-            alt="Avatar of Jonathan Reinink"
-          />
-          <span class="ml-2 text-sm font-semibold">Leang</span>
-          <IconUil:angle-down />
+  <div class="w-full p-3">
+    <div
+      class="w-full h-16 flex items-center p-3 rounded-lg bg-white dark:bg-gray-700"
+    >
+      <!-- Burger Menu -->
+      <button
+        type="button"
+        class="text-xl hidden <sm:block"
+        @click.prevent="ui.toggle"
+      >
+        <IconLineMd:menu />
+      </button>
+
+      <!-- Avatar Dropdown -->
+      <Menu as="div" class="relative ml-auto">
+        <div>
+          <MenuButton class="ml-auto">
+            <avatar v-if="user" size="40">
+              <img :src="user.user_metadata.avatar_url" alt="" />
+            </avatar>
+          </MenuButton>
         </div>
-        <div
-          class="flex space-x-4 border-l ml-6 pl-6 border-gray-900/10 dark:border-gray-50/[0.2]"
+
+        <transition
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0"
         >
-          <LanguageSwitcher />
-          <ThemeSwitcher />
-          <Anchor
-            class="hover:no-underline hover:text-slate-900 hover:dark:text-white text-lg flex self-center items-center"
-            href="https://github.com/tuongmengleang/nuxt3-awesome-boilerplate"
-            title="Github"
+          <MenuItems
+            class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
-            <IconMdi:github-face />
-          </Anchor>
-        </div>
-      </div>
-    </template>
-    <template #options="{ toggleOptions }">
-      <ActionSheet @onClose="toggleOptions(false)">
-        <ActionSheetBody>
-          <ActionSheetHeader text="Menu" />
-          <div class="mt-6 text-sm font-bold capitalize">
-            {{ $t('components.theme_switcher.change_theme') }}
-          </div>
-          <div class="mt-2">
-            <ThemeSwitcher type="select-box" />
-          </div>
-          <div class="mt-6 text-sm font-bold capitalize">
-            {{ $t('components.language_switcher.change_language') }}
-          </div>
-          <div class="mt-2">
-            <LanguageSwitcher type="select-box" />
-          </div>
-        </ActionSheetBody>
-        <Button
-          type="secondary"
-          title="Github"
-          href="https://github.com/tuongmengleang/nuxt3-awesome-boilerplate"
-        >
-          <IconMdi:github-face />
-          <span class="ml-1">Github</span>
-        </Button>
-        <Button
-          text="Close"
-          type="secondary"
-          @click.prevent="toggleOptions(false)"
-        />
-      </ActionSheet>
-    </template>
-    <template #drawer>
-      <slot name="drawer" />
-    </template>
-  </BuilderNavbar>
+            <div class="p-1">
+              <MenuItem v-slot="{ active }">
+                <button
+                  :class="[
+                    active ? 'bg-blue-100 text-blue-600' : 'text-gray-900',
+                    'group flex w-full items-center rounded-md px-2 py-2 text-md',
+                  ]"
+                >
+                  <IconHeroicons-outline:user-circle class="mr-2 text-lg" />
+                  Profile
+                </button>
+              </MenuItem>
+              <MenuItem v-slot="{ active }">
+                <button
+                  :class="[
+                    active ? 'bg-blue-100 text-blue-600' : 'text-gray-900',
+                    'group flex w-full items-center rounded-md px-2 py-2 text-md',
+                  ]"
+                >
+                  <IconHeroicons-solid:logout class="mr-2 text-lg" />
+                  Log Out
+                </button>
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </transition>
+      </Menu>
+    </div>
+  </div>
 </template>

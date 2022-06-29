@@ -34,8 +34,8 @@ pages:
         footer_button: validate
         footer_link: github users api
   dashboard:
-    nav: dashboard
-    title: dashboard
+    nav: Dashboard
+    title: Dashboard
     index:
       nav: home
       title: home

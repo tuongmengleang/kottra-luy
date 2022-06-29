@@ -1,83 +1,64 @@
 <script lang="ts" setup>
 const props = defineProps({
-  text: {
-    type: String,
-    default: '',
-  },
   type: {
     type: String,
-    default: 'primary',
+    default: 'button',
+  },
+  color: {
+    type: String,
+    default: 'danger',
   },
   size: {
     type: String,
     default: 'md',
   },
-  to: {
-    type: [String, Object],
-    default: undefined,
-  },
-  href: {
-    type: String,
-    default: undefined,
-  },
 })
 
 // state:styles
 const defaultStyle = `
-  cursor-pointer
-  border transition-color duration-300
-  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]
-  flex items-center justify-center font-semibold
+  box-border relative z-30 inline-flex items-center justify-center w-auto overflow-hidden font-bold text-white transition-all duration-300 rounded-md cursor-pointer group ring-offset-2 ring-1 ease focus:outline-none
 `
 const styles = reactive<{
   [key: string]: string
 }>({
-  primary: 'text-white bg-primary-500 hover:bg-primary-400 border-primary-500',
-  secondary:
-    'text-slate-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700',
-  opposite:
-    'text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white',
+  primary:
+    'text-white bg-blue-600 hover:bg-blue-500 border-blue-500 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500',
+  danger:
+    'text-white bg-red-600 hover:bg-red-500 border-red-500 ring-red-300 ring-offset-red-200 hover:ring-offset-red-500',
 })
+
 const sizes = reactive<{
   [key: string]: string
 }>({
-  lg: 'h-12 px-8 text-lg rounded-lg',
-  md: 'h-10 px-6 text-base rounded',
-  sm: 'h-8 px-4 text-sm rounded',
-  xs: 'h-6 px-3 text-xs rounded',
+  lg: 'h-12 px-8 text-lg',
+  md: 'h-10 px-6 text-base',
+  sm: 'h-8 px-4 text-sm',
+  xs: 'h-6 px-3 text-xs',
 })
 
-// state
-const selectedStyle = computed(() => styles[props.type] || styles.primary)
+const selectedStyle = computed(() => styles[props.color] || styles.primary)
 const selectedSize = computed(() => sizes[props.size] || sizes.lg)
 
 // methods
 const onClick = (event: MouseEvent) => {
-  const router = useRouter()
-  if (props.to) {
-    router.push(props.to)
-  }
-  if (!props.href) {
-    event.preventDefault()
-  }
+  event.preventDefault()
 }
 </script>
 
 <template>
-  <NuxtLink
-    v-if="to"
-    tag="a"
-    :to="to"
+  <button
+    :type="`${props.type}`"
     :class="`${defaultStyle} ${selectedStyle} ${selectedSize}`"
-  >
-    <slot>{{ text }}</slot>
-  </NuxtLink>
-  <a
-    v-else
-    :class="`${defaultStyle} ${selectedStyle} ${selectedSize}`"
-    :href="href"
     @click="onClick"
   >
-    <slot>{{ text }}</slot>
-  </a>
+    <span
+      class="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"
+    ></span>
+    <span
+      class="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"
+    ></span>
+    <span class="relative z-20 flex items-center text-sm">
+      <slot />
+    </span>
+  </button>
 </template>

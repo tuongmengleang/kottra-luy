@@ -2,6 +2,22 @@ body,
 * {
   font-family: $fontFamily;
 }
+html, body, #__nuxt {
+  height: 100%;
+}
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+}
 
 // scrollbar
 ::-webkit-scrollbar {

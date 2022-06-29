@@ -1,64 +1,69 @@
-<script lang="ts">
-export default defineComponent({
-  props: {
-    mode: {
-      type: String,
-      default: 'normal',
-    },
-  },
-  setup() {
-    const sidebar = ref(null)
+<script lang="ts" setup>
+import { useUI } from '~/stores/ui'
 
-    onMounted(() => {
-      // const { onScroll } = useSticky(sidebar.value, -1000)
-      // setTimeout(() => onScroll(), 50)
-    })
-
-    return {
-      sidebar,
-    }
-  },
-})
+const ui = useUI()
 </script>
 
 <template>
   <div
     ref="sidebar"
-    :class="{
-      'fixed top-0 hidden pt-16 lg:flex lg:w-60 xl:w-80 h-screen':
-        mode === 'normal',
-      'relative flex-1 flex flex-col w-full': mode === 'mobile',
-    }"
+    v-click-outside="ui.close"
+    class="relative flex flex-col w-70 transition-all ease-in-out delay-150 duration-300 border-r border-gray-20 dark:border-gray-600 <sm:absolute <sm:h-full <sm:bg-white overflow-auto ease-in-out transition-all duration-300 z-30 <sm:transform"
+    :class="ui.isOpenDrawer ? 'translate-x-0' : '<sm:-translate-x-full'"
   >
-    <div class="flex-1 overflow-y-auto pl-4 lg:pl-0 pr-4 py-4">
+    <!-- Sidebar Logo -->
+    <div class="w-full flex items-center py-6 px-5">
+      <img
+        class="flex-none w-12 h-12 rounded-full"
+        src="/favicon.ico"
+        alt="logo"
+      />
+      <span class="text-xl font-bold ml-4">Kottra Luy</span>
+    </div>
+
+    <!-- Sidebar Menus -->
+    <div class="w-full h-full overflow-x-hidden overflow-y-auto flex-1 mt-5">
       <ul>
-        <li v-for="i in 29" :key="i">
-          <Anchor
-            :to="{ name: 'dashboard' }"
-            class="group flex items-center mb-4 hover:no-underline"
+        <li class="px-3 py-1 first:pt-0">
+          <a
+            href="#"
+            class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
           >
-            <div
-              class="flex items-center mr-4 px-2 py-2 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-sky-200 dark:highlight-white/10"
-              :class="{
-                'text-white dark:text-white group-hover:bg-sky-500 bg-sky-500':
-                  i === 1,
-                'text-slate-500 dark:text-gray-100 group-hover:bg-gray-200 bg-gray-100 dark:group-hover:bg-slate-600 dark:bg-slate-700':
-                  i !== 1,
-              }"
+            <IconMajesticons:dashboard-line class="shrink-0 text-xl" />
+            <span class="ml-4 overflow-hidden whitespace-nowrap"
+              >Dashboard</span
             >
-              <IconUil:apps class="text-xs" />
-            </div>
-            <span
-              class="text-sm font-semibold capitalize"
-              :class="{
-                'font-extrabold text-sky-500 dark:text-sky-400': i === 1,
-              }"
-            >
-              {{ $t('pages.dashboard.index.nav') }}
-            </span>
-          </Anchor>
+          </a>
+        </li>
+        <li class="px-3 py-1">
+          <a
+            href="#"
+            class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
+          >
+            <IconMajesticons:location-marker-line class="text-xl" />
+            <span class="ml-4">Locations</span>
+          </a>
+        </li>
+        <li class="px-3 py-1">
+          <a
+            href="#"
+            class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
+          >
+            <IconMajesticons:cloud-line class="text-xl" />
+            <span class="ml-4">Cloud Storage</span>
+          </a>
         </li>
       </ul>
     </div>
+
+    <!-- Sidebar Bottom -->
+    <div class="w-full py-6 px-5">
+      <!--      <button type="button" title="LogOut" class="w-full flex items-center gap-5 py-3 px-3 bg-red-500 shadow rounded-xl text-white font-bold hover:bg-red-600 transition transform delay-150 hover:-translate-y-2 hover:shadow-xl ease-in duration-200">-->
+      <!--        <IconHeroiconsOutline:login class="text-xl"/>-->
+      <!--        LogOut-->
+      <!--      </button>-->
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped></style>

@@ -5,22 +5,12 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    'IconBi:exclamationCircleFill': typeof import('~icons/bi/exclamation-circle-fill')['default']
-    'IconClarity:timesCircleSolid': typeof import('~icons/clarity/times-circle-solid')['default']
-    'IconClarity:timesLine': typeof import('~icons/clarity/times-line')['default']
-    'IconFaSolid:ellipsisV': typeof import('~icons/fa-solid/ellipsis-v')['default']
-    'IconLa:language': typeof import('~icons/la/language')['default']
-    'IconMdi:checkCircle': typeof import('~icons/mdi/check-circle')['default']
-    'IconMdi:githubFace': typeof import('~icons/mdi/github-face')['default']
-    'IconSimpleIcons:nuxtdotjs': typeof import('~icons/simple-icons/nuxtdotjs')['default']
-    'IconUil:angleDown': typeof import('~icons/uil/angle-down')['default']
-    'IconUil:apps': typeof import('~icons/uil/apps')['default']
-    'IconUil:bars': typeof import('~icons/uil/bars')['default']
-    'IconUil:clock': typeof import('~icons/uil/clock')['default']
-    'IconUil:laptop': typeof import('~icons/uil/laptop')['default']
-    'IconUil:moon': typeof import('~icons/uil/moon')['default']
-    'IconUil:sun': typeof import('~icons/uil/sun')['default']
-    'IconUil:times': typeof import('~icons/uil/times')['default']
+    'IconHeroiconsOutline:userCircle': typeof import('~icons/heroicons-outline/user-circle')['default']
+    'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
+    'IconLineMd:menu': typeof import('~icons/line-md/menu')['default']
+    'IconMajesticons:cloudLine': typeof import('~icons/majesticons/cloud-line')['default']
+    'IconMajesticons:dashboardLine': typeof import('~icons/majesticons/dashboard-line')['default']
+    'IconMajesticons:locationMarkerLine': typeof import('~icons/majesticons/location-marker-line')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
