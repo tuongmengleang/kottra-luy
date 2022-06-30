@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useUI } from '~/stores/ui'
-
 const ui = useUI()
 </script>
 
@@ -25,33 +24,36 @@ const ui = useUI()
     <div class="w-full h-full overflow-x-hidden overflow-y-auto flex-1 mt-5">
       <ul>
         <li class="px-3 py-1 first:pt-0">
-          <a
-            href="#"
+          <NuxtLink
+            to="/"
             class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
+            @click.prevent="ui.close"
           >
             <IconMajesticons:dashboard-line class="shrink-0 text-xl" />
             <span class="ml-4 overflow-hidden whitespace-nowrap"
               >Dashboard</span
             >
-          </a>
+          </NuxtLink>
         </li>
         <li class="px-3 py-1">
-          <a
-            href="#"
+          <NuxtLink
+            to="/expenses"
             class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
+            @click.prevent="ui.close"
           >
-            <IconMajesticons:location-marker-line class="text-xl" />
-            <span class="ml-4">Locations</span>
-          </a>
+            <IconUil:money-insert class="text-xl" />
+            <span class="ml-4">Expenses</span>
+          </NuxtLink>
         </li>
         <li class="px-3 py-1">
-          <a
-            href="#"
+          <NuxtLink
+            to="/revenue"
             class="flex items-center w-full h-full text-lg text-gray-400 hover:text-blue-600 dark:text-white font-bold px-3 py-3 rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700"
+            @click.prevent="ui.close"
           >
-            <IconMajesticons:cloud-line class="text-xl" />
-            <span class="ml-4">Cloud Storage</span>
-          </a>
+            <IconUil:money-withdraw class="text-xl" />
+            <span class="ml-4">Revenue</span>
+          </NuxtLink>
         </li>
       </ul>
     </div>
@@ -66,4 +68,8 @@ const ui = useUI()
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.router-link-active {
+  @apply text-blue-600 bg-blue-100 dark:hover:bg-gray-700;
+}
+</style>

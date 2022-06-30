@@ -18,15 +18,9 @@ const signOut = async () => {
       class="w-full h-16 flex items-center p-3 rounded-lg bg-white dark:bg-gray-700"
     >
       <!-- Burger Menu -->
-      <button
-        type="button"
-        class="text-xl hidden <sm:block"
-        @click.prevent="ui.open"
-      >
+      <button type="button" class="text-xl hidden <sm:block" @click="ui.open()">
         <IconLineMd:menu />
       </button>
-
-      {{ ui.isOpenDrawer }}
 
       <!-- Avatar Dropdown -->
       <Menu as="div" class="relative ml-auto">

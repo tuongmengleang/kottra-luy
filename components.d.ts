@@ -8,9 +8,9 @@ declare module '@vue/runtime-core' {
     'IconHeroiconsOutline:userCircle': typeof import('~icons/heroicons-outline/user-circle')['default']
     'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
     'IconLineMd:menu': typeof import('~icons/line-md/menu')['default']
-    'IconMajesticons:cloudLine': typeof import('~icons/majesticons/cloud-line')['default']
     'IconMajesticons:dashboardLine': typeof import('~icons/majesticons/dashboard-line')['default']
-    'IconMajesticons:locationMarkerLine': typeof import('~icons/majesticons/location-marker-line')['default']
+    'IconUil:moneyInsert': typeof import('~icons/uil/money-insert')['default']
+    'IconUil:moneyWithdraw': typeof import('~icons/uil/money-withdraw')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
