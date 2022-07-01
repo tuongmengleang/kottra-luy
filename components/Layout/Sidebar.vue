@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 const closeDrawer = () => {
-  // const sidebar: any = document.querySelector('#sidebar')
-  // sidebar.classList.remove('left-0')
-  // sidebar.classList.add('<sm:left-[-300px]')
+  const sidebar: any = document.querySelector('#sidebar')
+  sidebar.classList.remove('left-0')
+  sidebar.classList.add('<sm:left-[-300px]')
 }
 </script>
 
 <template>
   <div
     id="sidebar"
-    ref="sidebar"
     v-click-outside="closeDrawer"
     class="max-w-[300px] w-[300px] <sm:fixed <sm:left-[-300px] h-full flex flex-col bg-white border-r border-gray-200 z-50 transition-all duration-300"
   >
