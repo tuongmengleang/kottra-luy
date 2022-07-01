@@ -2,15 +2,16 @@
 const closeDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
   sidebar.classList.remove('left-0')
-  sidebar.classList.add('<sm:left-[-300px]')
+  sidebar.classList.add('<sm:left-[-250px]')
 }
 </script>
 
 <template>
   <div
     id="sidebar"
+    ref="sidebar"
     v-click-outside="closeDrawer"
-    class="max-w-[300px] w-[300px] <sm:fixed <sm:left-[-300px] h-full flex flex-col bg-white border-r border-gray-200 z-50 transition-all duration-300"
+    class="max-w-[300px] w-[300px] <sm:w-[250px] <sm:fixed <sm:left-[-250px] h-full flex flex-col bg-white border-r border-gray-200 z-50 transition-all duration-300 dark:bg-[#2B2E43]"
   >
     <!-- Logo -->
     <div class="flex items-center p-4">
@@ -24,7 +25,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +47,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-blue-600 hover:text-white rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +94,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +116,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +138,7 @@ const closeDrawer = () => {
         <li class="py-1">
           <a
             href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 rounded-lg"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -168,8 +169,14 @@ const closeDrawer = () => {
           />
         </avatar>
         <div class="ml-2">
-          <h4 class="text-lg text-black font-semibold leading-4">Hải Nguyễn</h4>
-          <span class="text-sm text-gray-500">nguyen168@gmail.com</span>
+          <h4
+            class="text-lg text-black font-semibold leading-4 dark:text-white"
+          >
+            Hải Nguyễn
+          </h4>
+          <span class="text-sm text-gray-500 dark:text-gray-300"
+            >nguyen168@gmail.com</span
+          >
         </div>
       </div>
     </div>

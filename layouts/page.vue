@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const openDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
-  sidebar.classList.remove('<sm:left-[-300px]')
+  sidebar.classList.remove('<sm:left-[-250px]')
   sidebar.classList.add('left-0')
 }
 </script>
@@ -17,7 +17,7 @@ const openDrawer = () => {
       <div class="w-full h-full bg-white">
         <!-- Header -->
         <div class="p-4">
-          <Button size="md" @click="openDrawer">
+          <Button class="hidden <sm:block" size="md" @click="openDrawer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
