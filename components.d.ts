@@ -5,10 +5,17 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    'IconBi:checkCircle': typeof import('~icons/bi/check-circle')['default']
+    'IconHeroiconsOutline:bell': typeof import('~icons/heroicons-outline/bell')['default']
+    'IconHeroiconsOutline:menuAlt1': typeof import('~icons/heroicons-outline/menu-alt1')['default']
     'IconHeroiconsOutline:userCircle': typeof import('~icons/heroicons-outline/user-circle')['default']
     'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
     'IconLineMd:menu': typeof import('~icons/line-md/menu')['default']
     'IconMajesticons:dashboardLine': typeof import('~icons/majesticons/dashboard-line')['default']
+    'IconRi:search2Line': typeof import('~icons/ri/search2-line')['default']
+    'IconTabler:activity': typeof import('~icons/tabler/activity')['default']
+    'IconTabler:layoutDashboard': typeof import('~icons/tabler/layout-dashboard')['default']
+    'IconTabler:settings': typeof import('~icons/tabler/settings')['default']
     'IconUil:moneyInsert': typeof import('~icons/uil/money-insert')['default']
     'IconUil:moneyWithdraw': typeof import('~icons/uil/money-withdraw')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

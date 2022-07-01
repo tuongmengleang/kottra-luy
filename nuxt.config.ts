@@ -14,14 +14,14 @@ export default defineNuxtConfig({
   // app
   app: {
     head: {
-      title: 'Nuxt 3 Awesome Starter',
-      titleTemplate: '%s - Nuxt 3 Awesome Starter',
+      title: 'Kottra Luy',
+      titleTemplate: '%s',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           hid: 'description',
           name: 'description',
-          content: 'Nuxt 3 Awesome Starter',
+          content: 'Kottra Luy',
         },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

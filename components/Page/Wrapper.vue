@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 relative py-3">
+  <div class="relative py-5 px-3">
     <slot />
   </div>
 </template>

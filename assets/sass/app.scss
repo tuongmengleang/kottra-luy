@@ -74,3 +74,16 @@ html.dark {
   transform: translateY(-20px);
   opacity: 0;
 }
+
+/* Shadow Light Dark */
+
+.dark-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.light-shadow {
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+}
+
+.dark .dark\:light-shadow {
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+}

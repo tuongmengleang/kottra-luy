@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'dashboard',
+  layout: 'page',
 })
 </script>
 
@@ -12,11 +12,7 @@ definePageMeta({
 
     <PageBody>
       <PageSection>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia autem
-          debitis ab dolorum tempore placeat possimus perferendis porro sit aut
-          nobis quasi hic consequuntur, atque impedit nihil totam illo odit?
-        </p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </PageSection>
     </PageBody>
   </PageWrapper>

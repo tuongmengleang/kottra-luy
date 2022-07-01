@@ -6,7 +6,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: 'danger',
+    default: 'primary',
   },
   size: {
     type: String,
