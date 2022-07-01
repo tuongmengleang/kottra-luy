@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const closeDrawer = () => {
-  const sidebar: any = document.querySelector('#sidebar')
-  sidebar.classList.remove('left-0')
-  sidebar.classList.add('<sm:left-[-300px]')
+  // const sidebar: any = document.querySelector('#sidebar')
+  // sidebar.classList.remove('left-0')
+  // sidebar.classList.add('<sm:left-[-300px]')
 }
 </script>
 
