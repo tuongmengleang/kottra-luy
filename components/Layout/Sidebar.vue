@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 const closeDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
+  const hamburger: any = document.querySelector('.hamburger')
   sidebar.classList.remove('left-0')
   sidebar.classList.add('<sm:left-[-250px]')
+  hamburger.classList.remove('active')
 }
 </script>
 
@@ -15,7 +17,6 @@ const closeDrawer = () => {
   >
     <!-- Logo -->
     <div class="flex items-center p-4">
-      <!--      <img class="w-12 h-12 rounded-full" src="https://i.pinimg.com/736x/44/56/c6/4456c6318ded21140688586bb77ef2e0.jpg" alt="">-->
       <img class="w-12 h-12 rounded-full" src="/favicon.ico" alt="" />
       <h3 class="w-full text-center text-lg font-bold ml-3">Kottra Luy</h3>
     </div>
@@ -70,9 +71,9 @@ const closeDrawer = () => {
           <hr />
         </li>
         <li class="py-1">
-          <a
-            href="#"
-            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white rounded-lg dark:text-gray-200"
+          <RouterLink
+            to="/"
+            class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,51 +90,25 @@ const closeDrawer = () => {
               />
             </svg>
             Dashboard
-          </a>
+          </RouterLink>
         </li>
         <li class="py-1">
-          <a
-            href="#"
+          <RouterLink
+            to="/expenses"
             class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            Teams
-          </a>
+            <IconUil:money-insert class="text-xl" />
+            Expenses
+          </RouterLink>
         </li>
         <li class="py-1">
-          <a
-            href="#"
+          <RouterLink
+            to="/revenue"
             class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-              />
-            </svg>
-            Projects
-          </a>
+            <IconUil:money-withdraw class="text-xl" />
+            Revenue
+          </RouterLink>
         </li>
         <li class="py-1">
           <a
@@ -183,4 +158,8 @@ const closeDrawer = () => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.router-link-active {
+  @apply text-blue-600 bg-blue-100 dark:hover:bg-gray-700;
+}
+</style>
