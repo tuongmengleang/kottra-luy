@@ -8,6 +8,7 @@ import type { Plugin } from 'windicss/types/interfaces'
 import TypographyPlugin from 'windicss/plugin/typography'
 import AspectRatioPlugin from 'windicss/plugin/aspect-ratio'
 import FiltersPlugin from 'windicss/plugin/filters'
+import DaisyUi from 'daisyui'
 
 const MyTheme = {
   colors: {
@@ -38,7 +39,7 @@ export default defineConfig({
       './pages/**/*.vue',
       './plugins/**/*.{js,ts}',
       './utils/**/*.{js,ts}',
-      './app.vue',
+      './add.vue',
     ],
   },
   theme: {
@@ -61,5 +62,6 @@ export default defineConfig({
     FiltersPlugin as Plugin,
     TypographyPlugin as Plugin,
     AspectRatioPlugin as Plugin,
+    DaisyUi as Plugin,
   ] as Plugin[],
 })

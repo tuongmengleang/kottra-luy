@@ -11,9 +11,8 @@ const closeDrawer = () => {
 <template>
   <div
     id="sidebar"
-    ref="sidebar"
     v-click-outside="closeDrawer"
-    class="max-w-[300px] w-[300px] <sm:w-[250px] <sm:fixed <sm:left-[-250px] h-full flex flex-col bg-white border-r border-gray-200 z-50 transition-all duration-300 dark:bg-[#2B2E43]"
+    class="max-w-[300px] w-[300px] <sm:w-[250px] <sm:fixed <sm:left-[-250px] h-full flex flex-col bg-white border-r border-gray-200 dark:border-gray-400 z-10 transition-all duration-300 dark:bg-[#2B2E43]"
   >
     <!-- Logo -->
     <div class="flex items-center p-4">
@@ -71,9 +70,10 @@ const closeDrawer = () => {
           <hr />
         </li>
         <li class="py-1">
-          <RouterLink
+          <NuxtLink
             to="/"
             class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
+            @click.prevent="closeDrawer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,25 +90,27 @@ const closeDrawer = () => {
               />
             </svg>
             Dashboard
-          </RouterLink>
+          </NuxtLink>
         </li>
         <li class="py-1">
-          <RouterLink
+          <NuxtLink
             to="/expenses"
             class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
+            @click.prevent="closeDrawer"
           >
             <IconUil:money-insert class="text-xl" />
             Expenses
-          </RouterLink>
+          </NuxtLink>
         </li>
         <li class="py-1">
-          <RouterLink
+          <NuxtLink
             to="/revenue"
             class="w-full inline-block flex items-center gap-3 px-4 py-2 text-gray-700 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg dark:text-gray-200"
+            @click.prevent="closeDrawer"
           >
             <IconUil:money-withdraw class="text-xl" />
             Revenue
-          </RouterLink>
+          </NuxtLink>
         </li>
         <li class="py-1">
           <a
@@ -137,12 +139,12 @@ const closeDrawer = () => {
     <!-- Footer -->
     <div class="py-5 px-4">
       <div class="w-full flex items-center">
-        <avatar class="flex-none self-start" size="40">
+        <Avatar class="flex-none self-start" size="40">
           <img
             src="https://images.pexels.com/photos/3616937/pexels-photo-3616937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
           />
-        </avatar>
+        </Avatar>
         <div class="ml-2">
           <h4
             class="text-lg text-black font-semibold leading-4 dark:text-white"

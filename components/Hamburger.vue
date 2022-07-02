@@ -10,7 +10,7 @@
 
 <style lang="scss" scoped>
 .hamburger {
-  @apply hidden <sm:block;
+  @apply hidden <sm:block <sm:mb-3;
   cursor: pointer;
   &.active {
     .line {

@@ -11,7 +11,7 @@ declare module '@nuxt/schema' {
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  // app
+  // add
   app: {
     head: {
       title: 'Kottra Luy',
@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/navbar.ts'],
 
   // modules
-  modules: ['@nuxtjs/supabase', 'nuxt-icons'],
+  modules: ['@nuxtjs/supabase'],
 
   // build
   build: {

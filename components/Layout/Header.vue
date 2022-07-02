@@ -31,12 +31,12 @@ const ui = useUI()
           ></span>
         </button>
         <!-- avatar user -->
-        <avatar size="40">
+        <Avatar size="40">
           <img
             src="https://lh3.googleusercontent.com/nZe2FsuLG8KE3oLmYcBqAmKe0QvNb_VynY--HIfQcyFsfrbkUP9ekTiIaZSNoOYbwKDGjyJGHsiauCLH-tC6clp6E651eP05rpDJx8M=w600"
             alt=""
           />
-        </avatar>
+        </Avatar>
       </div>
     </header>
   </div>

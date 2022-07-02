@@ -16,7 +16,7 @@ const props = defineProps({
 
 // state:styles
 const defaultStyle = `
-  box-border relative z-30 inline-flex items-center justify-center w-auto overflow-hidden font-bold text-white transition-all duration-300 rounded-md cursor-pointer group ring-offset-2 ring-1 ease focus:outline-none
+  box-border relative inline-flex items-center justify-center w-auto overflow-hidden font-bold text-white transition-all duration-300 rounded-md cursor-pointer group ring-offset-2 ring-1 ease focus:outline-none
 `
 const styles = reactive<{
   [key: string]: string

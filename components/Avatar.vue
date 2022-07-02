@@ -19,7 +19,8 @@ const defaultStyle = `
   w-10 h-10 rounded-full overflow-hidden transition-all
 `
 
-const avatarSize = computed(() => props.size + 'px')
+// const avatarSize = computed(() => props.size + 'px')
+const avatarSize = props.size + 'px'
 </script>
 
 <template>

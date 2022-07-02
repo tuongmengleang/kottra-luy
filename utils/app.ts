@@ -10,7 +10,7 @@ export interface IApp {
 }
 
 export function AppSetup() {
-  // declare app information
+  // declare add information
   const app: IApp = {
     name: 'Kottra Luy',
     author: {

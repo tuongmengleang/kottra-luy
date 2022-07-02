@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import expenses from '../server/data/expenses.json'
+import expenses from '../../data/expenses.json'
+
 definePageMeta({
   layout: 'page',
 })
+// import { useUI } from "~/stores/ui";
+// const ui = useUI()
 </script>
 
 <template>
@@ -13,10 +16,12 @@ definePageMeta({
 
     <PageBody>
       <ClientOnly>
-        <div class="mt-8 border border-gray-200 rounded-lg pb-2">
+        <div
+          class="mt-8 border border-gray-200 dark:border-gray-500 rounded-lg overflow-hidden"
+        >
           <!-- Header Table -->
           <div class="w-full flex items-center p-5">
-            <div class="text-xl text-black font-semibold">
+            <div class="text-xl text-black dark:text-white font-semibold">
               <h1>{{ $t('pages.expenses.title') }} List</h1>
             </div>
             <div class="flex items-center gap-5 ml-auto">
@@ -60,7 +65,7 @@ definePageMeta({
           </div>
 
           <!-- Table -->
-          <table class="w-full border-t border-gray-200">
+          <table class="w-full border-t border-gray-200 dark:border-gray-600">
             <thead>
               <tr>
                 <th class="py-3 px-3">No</th>
@@ -73,7 +78,7 @@ definePageMeta({
               <tr
                 v-for="(item, index) in expenses"
                 :key="index"
-                class="h-14 text-center even:bg-white odd:bg-gray-100"
+                class="h-14 text-center even:bg-white odd:bg-gray-100 dark:even:bg-gray-700 dark:odd:bg-gray-800"
               >
                 <td>{{ item.id }}</td>
                 <td>{{ item.amount }}</td>
@@ -82,7 +87,7 @@ definePageMeta({
                   <button
                     type="button"
                     title="Delete"
-                    class="p-1 rounded-full text-black hover:bg-red-200 hover:text-red-500 focus:bg-red-200 focus:text-red-500"
+                    class="p-1 rounded-full text-black dark:text-white hover:bg-red-200 hover:text-red-500 focus:bg-red-200 focus:text-red-500"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +107,7 @@ definePageMeta({
                   <button
                     type="button"
                     title="Edit"
-                    class="p-1 rounded-full text-black hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-200 focus:text-blue-500"
+                    class="p-1 rounded-full text-black dark:text-white hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-200 focus:text-blue-500"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -122,10 +127,45 @@ definePageMeta({
                 </td>
               </tr>
             </tbody>
-            <tbody></tbody>
           </table>
         </div>
       </ClientOnly>
+
+      <!-- Dialog  -->
+      <!--      <Dialog>-->
+      <!--        <template #dialog-title>-->
+      <!--          <h1 class="text-lg font-bold">Add Expenses</h1>-->
+      <!--        </template>-->
+      <!--        <template #dialog-content>-->
+      <!--          <form>-->
+      <!--            &lt;!&ndash; amount field &ndash;&gt;-->
+      <!--            <div class="py-2">-->
+      <!--              <input type="text" placeholder="Type here" class="input input-md input-bordered w-full max-w-full bg-transparent" />-->
+      <!--            </div>-->
+
+      <!--            &lt;!&ndash; category field &ndash;&gt;-->
+      <!--          <div class="py-2">-->
+      <!--            <select class="select select-md select-bordered w-full max-w-full bg-transparent text-black">-->
+      <!--              <option disabled selected>Who shot first?</option>-->
+      <!--              <option>Han Solo</option>-->
+      <!--              <option>Greedo</option>-->
+      <!--              <option>Mengleang</option>-->
+      <!--              <option>Virak</option>-->
+      <!--              <option>Sokkong</option>-->
+      <!--              <option>Han Solo</option>-->
+      <!--              <option>Greedo</option>-->
+      <!--              <option>Mengleang</option>-->
+      <!--              <option>Virak</option>-->
+      <!--              <option>Sokkong</option>-->
+      <!--            </select>-->
+      <!--          </div>-->
+
+      <!--          </form>-->
+      <!--        </template>-->
+      <!--        <template #dialog-footer>-->
+      <!--          <Button color="danger" size="md">Cancel</Button>-->
+      <!--        </template>-->
+      <!--      </Dialog>-->
     </PageBody>
   </PageWrapper>
 </template>
