@@ -12,11 +12,7 @@ const ui = useUI()
 
 <template>
   <TransitionRoot appear :show="ui.isOpenDialog" as="div">
-    <Dialog
-      as="div"
-      class="relative z-10 overflow-auto"
-      @close="ui.closeDialog"
-    >
+    <Dialog as="div" class="relative z-10" @close="ui.closeDialog">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -55,7 +51,7 @@ const ui = useUI()
                 <slot name="dialog-content"></slot>
               </div>
 
-              <div class="mt-4">
+              <div class="mt-7 flex items-center gap-5">
                 <slot name="dialog-footer"></slot>
                 <!--                <button-->
                 <!--                    type="button"-->

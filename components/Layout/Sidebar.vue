@@ -11,6 +11,7 @@ const closeDrawer = () => {
 <template>
   <div
     id="sidebar"
+    ref="sidebar"
     v-click-outside="closeDrawer"
     class="max-w-[300px] w-[300px] <sm:w-[250px] <sm:fixed <sm:left-[-250px] h-full flex flex-col bg-white border-r border-gray-200 dark:border-gray-400 z-10 transition-all duration-300 dark:bg-[#2B2E43]"
   >
