@@ -6,6 +6,15 @@ definePageMeta({
   layout: 'page',
 })
 const ui = useUI()
+
+const isLoading = ref(false)
+const confirm = () => {
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+    ui.isOpenDialog = false
+  }, 3000)
+}
 </script>
 
 <template>
@@ -146,7 +155,7 @@ const ui = useUI()
               <input
                 type="text"
                 placeholder="Enter amount"
-                class="input input-md input-bordered w-full max-w-full bg-transparent"
+                class="input input-md input-bordered w-full max-w-full bg-transparent text-black"
               />
             </div>
 
@@ -158,18 +167,25 @@ const ui = useUI()
               <input
                 type="text"
                 placeholder="Enter cost on"
-                class="input input-md input-bordered w-full max-w-full bg-transparent"
+                class="input input-md input-bordered w-full max-w-full bg-transparent text-black"
               />
             </div>
           </form>
         </template>
         <template #dialog-footer>
-          <Button type="button" color="danger" size="md" class="w-full"
+          <Button type="button" color="secondary" size="md" class="w-full"
             >Cancel</Button
           >
-          <Button type="button" color="primary" size="md" class="w-full"
-            >Confirm</Button
+          <Button
+            type="button"
+            color="primary"
+            size="md"
+            :loading="isLoading"
+            class="w-full"
+            @click="confirm"
           >
+            Confirm
+          </Button>
         </template>
       </Dialog>
     </PageBody>
