@@ -4,6 +4,10 @@ const props = defineProps({
     type: String,
     default: 'button',
   },
+  form: {
+    type: String,
+    default: '',
+  },
   color: {
     type: String,
     default: 'primary',
@@ -53,6 +57,7 @@ const onClick = (event: MouseEvent) => {
 <template>
   <button
     :type="`${props.type}`"
+    :form="props.form"
     :class="`${defaultStyle} ${selectedStyle} ${selectedSize}`"
     :disabled="props.loading"
     :title="props.loading ? 'Loading' : ''"

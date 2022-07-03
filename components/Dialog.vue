@@ -6,13 +6,23 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
-import { useUI } from '~/stores/ui'
-const ui = useUI()
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
+})
+const emit = defineEmits(['update:modelValue'])
+
+// Emit close event
+const onClose = (value: Boolean) => {
+  emit('update:modelValue', value)
+}
 </script>
 
 <template>
-  <TransitionRoot appear :show="ui.isOpenDialog" as="div">
-    <Dialog as="div" class="relative z-10" @close="ui.closeDialog">
+  <TransitionRoot appear :show="props.modelValue" as="div">
+    <Dialog as="div" class="relative z-10" @close="onClose(false)">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -53,13 +63,6 @@ const ui = useUI()
 
               <div class="mt-7 flex items-center gap-5">
                 <slot name="dialog-footer"></slot>
-                <!--                <button-->
-                <!--                    type="button"-->
-                <!--                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"-->
-                <!--                    @click="ui.isOpenDialog"-->
-                <!--                >-->
-                <!--                  Got it, thanks!-->
-                <!--                </button>-->
               </div>
             </DialogPanel>
           </TransitionChild>

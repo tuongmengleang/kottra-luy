@@ -29,7 +29,10 @@
     "@nuxtjs/supabase": "^0.1.17",
     "@nuxtjs/svg": "^0.4.0",
     "@pinia/nuxt": "^0.1.9",
+    "@vee-validate/rules": "^4.5.11",
     "@vueuse/nuxt": "^8.7.4",
+    "click-outside-vue3": "^4.0.1",
+    "daisyui": "^2.17.0",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^3.2.0",
@@ -47,15 +50,13 @@
     "sass-loader": "^13.0.0",
     "typescript": "^4.7.4",
     "unplugin-icons": "^0.14.5",
-    "unplugin-vue-components": "^0.19.6"
+    "unplugin-vue-components": "^0.19.6",
+    "vee-validate": "^4.5.11",
+    "yup": "^0.32.11"
   },
   "lint-staged": {
     "**/*.{js,ts,vue,html,css}": [
       "yarn lintfix"
     ]
-  },
-  "dependencies": {
-    "click-outside-vue3": "^4.0.1",
-    "daisyui": "^2.17.0"
   }
 }

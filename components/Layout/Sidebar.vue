@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const user = useSupabaseUser()
+
 const closeDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
   const hamburger: any = document.querySelector('.hamburger')
@@ -140,21 +142,21 @@ const closeDrawer = () => {
     <!-- Footer -->
     <div class="py-5 px-4">
       <div class="w-full flex items-center">
-        <Avatar class="flex-none self-start" size="40">
+        <Avatar v-if="user" class="flex-none self-start" size="40">
           <img
-            src="https://images.pexels.com/photos/3616937/pexels-photo-3616937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
+            :src="user.user_metadata.avatar_url"
+            :alt="user.user_metadata.full_name"
           />
         </Avatar>
-        <div class="ml-2">
+        <div v-if="user" class="ml-2">
           <h4
             class="text-lg text-black font-semibold leading-4 dark:text-white"
           >
-            Hải Nguyễn
+            {{ user.user_metadata.full_name }}
           </h4>
-          <span class="text-sm text-gray-500 dark:text-gray-300"
-            >nguyen168@gmail.com</span
-          >
+          <span class="text-sm text-gray-500 dark:text-gray-300">{{
+            user.user_metadata.email
+          }}</span>
         </div>
       </div>
     </div>
