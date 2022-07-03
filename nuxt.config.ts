@@ -17,12 +17,36 @@ export default defineNuxtConfig({
       title: 'Kottra Luy',
       titleTemplate: '%s',
       meta: [
+        { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           hid: 'description',
           name: 'description',
+          content:
+            'Log in to Kottra Luy to Start note your expenses and revenue by yourself.',
+        },
+        { name: 'format-detection', content: 'telephone=no' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Kottra Luy' },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content:
+            'Log in to Kottra Luy to Start note your expenses and revenue by yourself.',
+        },
+        { hid: 'twitter:image', name: 'twitter:image', content: '/cover.png' },
+        {
+          hid: 'twitter:image:alt',
+          name: 'twitter:image:alt',
           content: 'Kottra Luy',
         },
+        { hid: 'og:title', property: 'og:title', content: 'Kottra Luy' },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:
+            'Log in to Kottra Luy to Start note your expenses and revenue by yourself.',
+        },
+        { hid: 'og:image', property: 'og:image', content: '/cover.png' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },

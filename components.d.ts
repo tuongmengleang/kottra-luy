@@ -5,8 +5,6 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    'IconUil:moneyInsert': typeof import('~icons/uil/money-insert')['default']
-    'IconUil:moneyWithdraw': typeof import('~icons/uil/money-withdraw')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
