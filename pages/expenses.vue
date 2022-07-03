@@ -53,13 +53,12 @@ const onSubmit = handleSubmit(async (values) => {
 // ******* Fetch Data
 // *** Fetch Categories List
 const { data: expenses } = await useAsyncData('expenses', async () => {
-  // console.log('to :', to)
   const { data } = await clinet
     .from<Expenses>('expenses')
-    .select('amount, cash_on, currency', { count: 'exact' })
+    .select('amount, cash_on, currency')
     .eq('user_id', user.value.id)
     .order('id', { ascending: false })
-    .range(1, 10)
+    .range(0, 10)
   return data
 })
 // console.log('expense :', expenses.value)
