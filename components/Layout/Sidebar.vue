@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 const user = useSupabaseUser()
+const client = useSupabaseClient()
+const router = useRouter()
 
 const closeDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
@@ -7,6 +10,11 @@ const closeDrawer = () => {
   sidebar.classList.remove('left-0')
   sidebar.classList.add('<sm:left-[-250px]')
   hamburger.classList.remove('active')
+}
+
+const signOut = async () => {
+  await client.auth.signOut()
+  router.push({ path: '/signin' })
 }
 </script>
 
@@ -141,24 +149,67 @@ const closeDrawer = () => {
     </div>
     <!-- Footer -->
     <div class="py-5 px-4">
-      <div class="w-full flex items-center">
-        <Avatar v-if="user" class="flex-none self-start" size="40">
-          <img
-            :src="user.user_metadata.avatar_url"
-            :alt="user.user_metadata.full_name"
-          />
-        </Avatar>
-        <div v-if="user" class="ml-2">
-          <h4
-            class="text-lg text-black font-semibold leading-4 dark:text-white"
+      <Menu as="div" class="relative">
+        <MenuButton>
+          <div class="w-full flex items-center">
+            <Avatar v-if="user" class="flex-none self-start" size="40">
+              <img
+                :src="user.user_metadata.avatar_url"
+                :alt="user.user_metadata.full_name"
+              />
+            </Avatar>
+            <div v-if="user" class="ml-2">
+              <h4
+                class="text-lg text-black text-left font-semibold leading-4 dark:text-white"
+              >
+                {{ user.user_metadata.full_name }}
+              </h4>
+              <span class="text-sm text-gray-500 dark:text-gray-300">{{
+                user.user_metadata.email
+              }}</span>
+            </div>
+          </div>
+        </MenuButton>
+        <transition
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0"
+        >
+          <MenuItems
+            class="absolute bottom-[3.5rem] left-0 mt-2 w-56 origin-bottom-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
-            {{ user.user_metadata.full_name }}
-          </h4>
-          <span class="text-sm text-gray-500 dark:text-gray-300">{{
-            user.user_metadata.email
-          }}</span>
-        </div>
-      </div>
+            <div class="px-1 py-1">
+              <MenuItem v-slot="{ active }">
+                <button
+                  :class="[
+                    active ? 'bg-blue-500 text-white' : 'text-gray-900',
+                    'group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold',
+                  ]"
+                >
+                  <IconGg:profile class="text-lg mr-2" />
+                  Profile
+                </button>
+              </MenuItem>
+              <MenuItem v-slot="{ active }">
+                <button
+                  type="button"
+                  :class="[
+                    active ? 'bg-red-200 text-red-600' : 'text-red-600',
+                    'group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold',
+                  ]"
+                  @click="signOut"
+                >
+                  <IconHeroicons-solid:logout class="text-lg mr-2" />
+                  Log Out
+                </button>
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </transition>
+      </Menu>
     </div>
   </div>
 </template>

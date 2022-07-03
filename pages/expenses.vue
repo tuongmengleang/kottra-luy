@@ -9,7 +9,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const clinet = useSupabaseClient()
+const client = useSupabaseClient()
 const user = useSupabaseUser()
 
 // Binding Data
@@ -35,7 +35,7 @@ const openDialog = () => {
 }
 const onSubmit = handleSubmit(async (values) => {
   errorSubmit.value = false
-  const { error } = await clinet.from('expenses').insert([
+  const { error } = await client.from('expenses').insert([
     {
       user_id: user.value.id,
       amount: values.amount,
@@ -45,19 +45,28 @@ const onSubmit = handleSubmit(async (values) => {
   ])
   if (error) errorSubmit.value = true
   else {
+    refresh()
     active.value = false
     resetForm()
   }
 })
 
+// Edit Expenses
+const editRow = (expenses: any) => {
+  amount.value = expenses.amount
+  cash_on.value = expenses.cash_on
+  currency.value = expenses.currency
+  active.value = true
+}
+
 // ******* Fetch Data
 // *** Fetch Categories List
-const { data: expenses } = await useAsyncData('expenses', async () => {
-  const { data } = await clinet
+const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
+  const { data } = await client
     .from<Expenses>('expenses')
     .select('amount, cash_on, currency')
     .eq('user_id', user.value.id)
-    .order('id', { ascending: false })
+    .order('created_at', { ascending: false })
     .range(0, 10)
   return data
 })
@@ -178,6 +187,7 @@ const { data: expenses } = await useAsyncData('expenses', async () => {
                     type="button"
                     title="Edit"
                     class="p-1 rounded-full text-black dark:text-white hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-200 focus:text-blue-500"
+                    @click="editRow(item)"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

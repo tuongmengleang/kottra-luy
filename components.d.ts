@@ -5,6 +5,10 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    'IconGg:profile': typeof import('~icons/gg/profile')['default']
+    'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
+    'IconUil:moneyInsert': typeof import('~icons/uil/money-insert')['default']
+    'IconUil:moneyWithdraw': typeof import('~icons/uil/money-withdraw')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
