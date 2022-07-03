@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import { useNuxtApp } from '#app'
 import { Switch } from '@headlessui/vue'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { Expenses } from '~/types/expenses'
-const nuxtApp = useNuxtApp()
 
 definePageMeta({
   layout: 'page',
@@ -85,7 +83,7 @@ const { data: expenses } = await useAsyncData('expenses', async () => {
               <h1>{{ $t('pages.expenses.title') }} List</h1>
             </div>
             <div class="flex items-center gap-5 ml-auto">
-              <Button size="md" @click="nuxtApp.$injected">
+              <Button size="md">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6 mr-2 <sm:mr-0"
