@@ -12,23 +12,7 @@ definePageMeta({
     </PageHeader>
 
     <PageBody>
-      <div class="w-full">
-        <table>
-          <thead>
-            <tr>
-              <td>{{ $t('pages.revenue.title') }}</td>
-            </tr>
-            <tr>
-              <button type="button" title="Download CSV">Download CSV</button>
-            </tr>
-            <tr>
-              <button type="button" title="Download CSV">
-                Add {{ $t('pages.revenue.title') }}
-              </button>
-            </tr>
-          </thead>
-        </table>
-      </div>
+      <div class="w-full"></div>
     </PageBody>
   </PageWrapper>
 </template>

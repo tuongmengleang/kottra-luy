@@ -2,7 +2,7 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 const user = useSupabaseUser()
 const client = useSupabaseClient()
-const router = useRouter()
+// const router = useRouter()
 
 const closeDrawer = () => {
   const sidebar: any = document.querySelector('#sidebar')
@@ -14,7 +14,8 @@ const closeDrawer = () => {
 
 const signOut = async () => {
   await client.auth.signOut()
-  router.push({ path: '/signin' })
+  window.location.reload()
+  // router.push({ path: '/signin' })
 }
 </script>
 
@@ -151,22 +152,24 @@ const signOut = async () => {
     <div class="py-5 px-4">
       <Menu as="div" class="relative">
         <MenuButton>
-          <div class="w-full flex items-center">
+          <div class="flex items-center">
             <Avatar v-if="user" class="flex-none self-start" size="40">
               <img
                 :src="user.user_metadata.avatar_url"
                 :alt="user.user_metadata.full_name"
               />
             </Avatar>
-            <div v-if="user" class="ml-2">
+            <div v-if="user" class="flex-1 ml-2">
               <h4
                 class="text-lg text-black text-left font-semibold leading-4 dark:text-white"
               >
                 {{ user.user_metadata.full_name }}
               </h4>
-              <span class="text-sm text-gray-500 dark:text-gray-300">{{
-                user.user_metadata.email
-              }}</span>
+              <p
+                class="max-w-[150px] truncate text-sm text-gray-500 dark:text-gray-300"
+              >
+                {{ user.user_metadata.email }}
+              </p>
             </div>
           </div>
         </MenuButton>

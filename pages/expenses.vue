@@ -67,7 +67,7 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
     .select('amount, cash_on, currency')
     .eq('user_id', user.value.id)
     .order('created_at', { ascending: false })
-    .range(0, 10)
+    .range(0, 9)
   return data
 })
 // console.log('expense :', expenses.value)
