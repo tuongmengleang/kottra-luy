@@ -55,7 +55,7 @@
     "yup": "^0.32.11"
   },
   "lint-staged": {
-    "**/*.{js,ts,vue,css,scss}": [
+    "**/*.{js,ts,vue,html,css,scss}": [
       "yarn lintfix"
     ]
   }
