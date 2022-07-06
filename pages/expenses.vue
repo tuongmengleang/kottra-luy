@@ -17,6 +17,7 @@ const active = ref(false)
 const errorSubmit = ref(false)
 // Binding Form
 const currency = ref(false)
+const page = ref(0)
 
 const { handleSubmit, resetForm, isSubmitting } = useForm()
 const { value: amount, errorMessage: errorMessageAmount } = useField(
@@ -45,6 +46,7 @@ const onSubmit = handleSubmit(async (values) => {
   ])
   if (error) errorSubmit.value = true
   else {
+    page.value = 0
     refresh()
     active.value = false
     resetForm()
@@ -59,18 +61,38 @@ const editRow = (expenses: any) => {
   active.value = true
 }
 
+const getPagination = (page: number, size: number) => {
+  const limit = size ? +size : 3
+  const from = page ? page * limit : 0
+  const to = page ? from + size : size
+
+  return { from, to }
+}
+
 // ******* Fetch Data
 // *** Fetch Categories List
 const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
-  const { data } = await client
+  const { from, to } = getPagination(page.value, 9)
+  const { data, count } = await client
     .from<Expenses>('expenses')
-    .select('amount, cash_on, currency')
+    .select('amount, cash_on, currency', { count: 'exact' })
     .eq('user_id', user.value.id)
     .order('created_at', { ascending: false })
-    .range(0, 9)
-  return data
+    .range(from, to)
+  return { data, count }
 })
-// console.log('expense :', expenses.value)
+// console.log('expenses :', expenses.value)
+
+const next = () => {
+  page.value++
+  refresh()
+  // console.log('page :', page.value)
+}
+const prev = () => {
+  page.value--
+  refresh()
+  // console.log('page :', page.value)
+}
 </script>
 
 <template>
@@ -82,12 +104,12 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
     <PageBody>
       <!-- Content Body -->
       <div>
-        <div class="mt-8 dark:border-gray-500 rounded-lg overflow-hidden">
+        <div class="mt-4 dark:border-gray-500 rounded-lg overflow-hidden">
           <!-- Header Table -->
           <div class="w-full flex items-center p-5">
-            <div class="text-xl text-black dark:text-white font-semibold">
-              <h1>{{ $t('pages.expenses.title') }} List</h1>
-            </div>
+            <!--            <div class="text-xl text-black dark:text-white font-semibold">-->
+            <!--              <h1>{{ $t('pages.expenses.title') }} List</h1>-->
+            <!--            </div>-->
             <div class="flex items-center gap-5 ml-auto">
               <Button size="md">
                 <svg
@@ -141,7 +163,7 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
             </thead>
             <tbody>
               <tr
-                v-for="(item, index) in expenses"
+                v-for="(item, index) in expenses.data"
                 :key="index"
                 class="h-14 text-center hover:bg-gray-200 rounded-lg"
               >
@@ -206,6 +228,32 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center mt-4 divide-x">
+          <button
+            type="button"
+            title="Prev"
+            class="text-xl px-2 py-1 bg-blue-600 text-white rounded-l-md hover:bg-blue-700"
+            @click="prev"
+          >
+            <IconHeroicons-outline:chevron-left />
+            <!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
+            <!--              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />-->
+            <!--            </svg>-->
+          </button>
+          <button
+            type="button"
+            title="Next"
+            class="text-xl px-2 py-1 bg-blue-600 text-white rounded-r-md hover:bg-blue-700"
+            @click="next"
+          >
+            <IconHeroicons-outline:chevron-right />
+            <!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
+            <!--              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />-->
+            <!--            </svg>-->
+          </button>
         </div>
       </div>
 
