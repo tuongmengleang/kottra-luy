@@ -82,9 +82,7 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
     <PageBody>
       <!-- Content Body -->
       <div>
-        <div
-          class="mt-8 border border-gray-200 dark:border-gray-500 rounded-lg overflow-hidden"
-        >
+        <div class="mt-8 dark:border-gray-500 rounded-lg overflow-hidden">
           <!-- Header Table -->
           <div class="w-full flex items-center p-5">
             <div class="text-xl text-black dark:text-white font-semibold">
@@ -131,8 +129,8 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
           </div>
 
           <!-- Table -->
-          <table class="w-full border-t border-gray-200 dark:border-gray-600">
-            <thead>
+          <table class="w-full">
+            <thead class="border-b border-gray-300">
               <tr>
                 <th class="py-3 px-3">No</th>
                 <th>Amount</th>
@@ -145,7 +143,7 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
               <tr
                 v-for="(item, index) in expenses"
                 :key="index"
-                class="h-14 text-center even:bg-white odd:bg-gray-100 dark:even:bg-gray-700 dark:odd:bg-gray-800"
+                class="h-14 text-center hover:bg-gray-200 rounded-lg"
               >
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.amount }}</td>
@@ -318,9 +316,8 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
             :loading="isSubmitting"
             class="w-full"
             @click.prevent="onSubmit"
+            >Confirm</Button
           >
-            Confirm
-          </Button>
         </template>
       </Dialog>
     </PageBody>

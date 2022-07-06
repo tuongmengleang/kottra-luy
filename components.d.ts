@@ -7,8 +7,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     'IconGg:creditCard': typeof import('~icons/gg/credit-card')['default']
     'IconGg:profile': typeof import('~icons/gg/profile')['default']
-    'IconGg:wallet': typeof import('~icons/gg/wallet')['default']
-    'IconHeroiconsOutline:currencyDollar': typeof import('~icons/heroicons-outline/currency-dollar')['default']
     'IconHeroiconsOutline:dotsVertical': typeof import('~icons/heroicons-outline/dots-vertical')['default']
     'IconHeroiconsOutline:fire': typeof import('~icons/heroicons-outline/fire')['default']
     'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
