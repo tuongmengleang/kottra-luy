@@ -12,9 +12,7 @@ definePageMeta({
     </PageHeader>
 
     <PageBody>
-      <div class="w-full">
-        <table id="wrapper"></table>
-      </div>
+      <div class="w-full"></div>
     </PageBody>
   </PageWrapper>
 </template>

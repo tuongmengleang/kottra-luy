@@ -1,62 +1,74 @@
 [
   {
-    "id": 1,
+    "no": 1,
     "amount": 5000.00,
-    "category": "Break First"
+    "cashOn": "Break First",
+    "currency": 0
   },
   {
-    "id": 2,
+    "no": 2,
     "amount": 2500.00,
-    "category": "Green Tea"
+    "cashOn": "Green Tea",
+    "currency": 0
   },
   {
-    "id": 3,
+    "no": 3,
     "amount": 7000.00,
-    "category": "Lunch"
+    "cashOn": "Lunch",
+    "currency": 0
   },
   {
-    "id": 4,
+    "no": 4,
     "amount": 40000.00,
-    "category": "Fixed Moto bike"
+    "cashOn": "Fixed Moto bike",
+    "currency": 0
   },
   {
-    "id": 5,
+    "no": 5,
     "amount": 5500.00,
-    "category": "Coconut Coffee"
+    "cashOn": "Coconut Coffee",
+    "currency": 0
   },
   {
-    "id": 6,
+    "no": 6,
     "amount": 4000.00,
-    "category": "Passion Soda"
+    "cashOn": "Passion Soda",
+    "currency": 0
   },
   {
-    "id": 7,
+    "no": 7,
     "amount": 40000.00,
-    "category": "Fixed Moto bike"
+    "cashOn": "Fixed Moto bike",
+    "currency": 0
   },
   {
-    "id": 8,
+    "no": 8,
     "amount": 7000.00,
-    "category": "Lunch"
+    "cashOn": "Lunch",
+    "currency": 0
   },
   {
-    "id": 9,
+    "no": 9,
     "amount": 4000.00,
-    "category": "Passion Soda"
+    "cashOn": "Passion Soda",
+    "currency": 0
   },
   {
-    "id": 10,
+    "no": 10,
     "amount": 2500.00,
-    "category": "Green Tea"
+    "cashOn": "Green Tea",
+    "currency": 0
   },
   {
-    "id": 11,
+    "no": 11,
     "amount": 40000.00,
-    "category": "Fixed Moto bike"
+    "cashOn": "Fixed Moto bike",
+    "currency": 0
   },
   {
-    "id": 12,
+    "no": 12,
     "amount": 7000.00,
-    "category": "Lunch"
+    "cashOn": "Lunch",
+    "currency": 0
   }
 ]

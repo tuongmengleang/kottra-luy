@@ -9,6 +9,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const nuxtApp = useNuxtApp()
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
@@ -18,6 +19,7 @@ const errorSubmit = ref(false)
 // Binding Form
 const currency = ref(false)
 const page = ref(0)
+const limit = ref(9)
 
 const { handleSubmit, resetForm, isSubmitting } = useForm()
 const { value: amount, errorMessage: errorMessageAmount } = useField(
@@ -61,18 +63,10 @@ const editRow = (expenses: any) => {
   active.value = true
 }
 
-const getPagination = (page: number, size: number) => {
-  const limit = size ? +size : 3
-  const from = page ? page * limit : 0
-  const to = page ? from + size : size
-
-  return { from, to }
-}
-
 // ******* Fetch Data
 // *** Fetch Categories List
 const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
-  const { from, to } = getPagination(page.value, 9)
+  const { from, to } = nuxtApp.$getPagination(page.value, limit.value)
   const { data, count } = await client
     .from<Expenses>('expenses')
     .select('amount, cash_on, currency', { count: 'exact' })
@@ -81,17 +75,24 @@ const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
     .range(from, to)
   return { data, count }
 })
-// console.log('expenses :', expenses.value)
+const pagination: any = nuxtApp.$pagination(expenses.value.count, limit.value)
+
+const changePagination = (pagination: number) => {
+  page.value = pagination
+  refresh()
+}
 
 const next = () => {
-  page.value++
-  refresh()
-  // console.log('page :', page.value)
+  if (pagination[pagination.length - 1].page - 1 > page.value) {
+    page.value++
+    refresh()
+  }
 }
 const prev = () => {
-  page.value--
-  refresh()
-  // console.log('page :', page.value)
+  if (page.value > 0) {
+    page.value--
+    refresh()
+  }
 }
 </script>
 
@@ -165,7 +166,7 @@ const prev = () => {
               <tr
                 v-for="(item, index) in expenses.data"
                 :key="index"
-                class="h-14 text-center hover:bg-gray-200 rounded-lg"
+                class="text-center hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg"
               >
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.amount }}</td>
@@ -231,17 +232,99 @@ const prev = () => {
         </div>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-center mt-4 divide-x">
+        <div class="w-full flex items-center justify-center">
+          <div
+            class="flex items-center justify-center flex-wrap gap-3 mt-5 mx-auto px-3 py-1 rounded-xl dark-shadow"
+          >
+            <a
+              class="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-full text-blue-500"
+              :class="{ 'text-blue-300 pointer-events-none': page === 0 }"
+              @click="prev"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </a>
+            <a
+              v-for="(item, index) in pagination"
+              :key="index"
+              class="w-10 h-10 flex items-center justify-center rounded-full font-semibold"
+              :class="[
+                item.page - 1 === page
+                  ? 'text-white bg-blue-500'
+                  : 'text-gray-600 hover:bg-gray-200',
+              ]"
+              @click="changePagination(item.page - 1)"
+            >
+              {{ item.page }}
+            </a>
+            <a
+              class="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-full text-blue-500"
+              :class="{
+                'text-blue-300 pointer-events-none':
+                  pagination[pagination.length - 1].page - 1 === page,
+              }"
+              @click="next"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="hidden flex items-center justify-center mt-4 divide-x">
           <button
             type="button"
             title="Prev"
             class="text-xl px-2 py-1 bg-blue-600 text-white rounded-l-md hover:bg-blue-700"
             @click="prev"
           >
-            <IconHeroicons-outline:chevron-left />
-            <!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-            <!--              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />-->
-            <!--            </svg>-->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            v-for="(item, index) in pagination"
+            :key="index"
+            type="button"
+            title="Prev"
+            class="text-xl px-2 py-1 bg-blue-600 text-white hover:bg-blue-700"
+            @click="changePagination(item.page)"
+          >
+            {{ item.page }}
           </button>
           <button
             type="button"
@@ -249,10 +332,20 @@ const prev = () => {
             class="text-xl px-2 py-1 bg-blue-600 text-white rounded-r-md hover:bg-blue-700"
             @click="next"
           >
-            <IconHeroicons-outline:chevron-right />
-            <!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-            <!--              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />-->
-            <!--            </svg>-->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </div>
       </div>

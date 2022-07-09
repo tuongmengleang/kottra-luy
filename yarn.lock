@@ -3770,6 +3770,11 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4, 
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
 
+gridjs-vue@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/gridjs-vue/-/gridjs-vue-5.0.4.tgz#b34e28ea7914a4cce312924f021ab3523e7698dd"
+  integrity sha512-g1XS7uaUcgKzezgyEAn2GvGCd3Pi8x9SHoSrbSV9M5FP46udAzVR97Qs7eH9duuAoRDCNrILiJ3uJS+sTNeN8Q==
+
 gridjs@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/gridjs/-/gridjs-5.0.2.tgz#27c4bd7399d07770e68b45bcca20c3b1fea828b6"

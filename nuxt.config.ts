@@ -11,6 +11,7 @@ declare module '@nuxt/schema' {
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  // ssr: false,
   // add
   app: {
     head: {
@@ -64,7 +65,7 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/navbar.ts'],
 
   // modules
-  modules: ['@nuxtjs/supabase'],
+  modules: ['@nuxtjs/supabase', './modules/gridjs/gridjs-module'],
 
   // build
   build: {
