@@ -65,7 +65,7 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/navbar.ts'],
 
   // modules
-  modules: ['@nuxtjs/supabase', './modules/gridjs/gridjs-module'],
+  modules: ['@nuxtjs/supabase'],
 
   // build
   build: {
