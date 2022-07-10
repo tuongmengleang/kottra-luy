@@ -21,7 +21,6 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    " ": "^0.1.7",
     "@headlessui/vue": "^1.6.4",
     "@iconify/json": "^2.1.63",
     "@intlify/nuxt3": "^0.2.2",
@@ -42,6 +41,7 @@
     "gridjs-vue": "^5.0.4",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.2",
+    "moment": "^2.29.4",
     "nuxt": "3.0.0-rc.4",
     "nuxt-windicss": "^2.4.2",
     "pinia": "^2.0.14",
@@ -57,7 +57,7 @@
     "yup": "^0.32.11"
   },
   "lint-staged": {
-    "**/*.{js,ts,vue,html,css}": [
+    "**/*.{js,ts,vue,html,css,scss}": [
       "yarn lintfix"
     ]
   }
