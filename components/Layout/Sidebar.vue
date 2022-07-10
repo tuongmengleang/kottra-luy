@@ -29,7 +29,7 @@ const signOut = async () => {
     <!-- Logo -->
     <div class="flex items-center p-4">
       <img class="w-12 h-12 rounded-full" src="/favicon.ico" alt="" />
-      <h3 class="w-full text-center text-lg font-bold ml-3">Kottra Luy</h3>
+      <h3 class="hidden w-full text-center text-lg font-bold">Kottra Luy</h3>
     </div>
     <!-- Menu -->
     <div class="flex-1 w-full h-full mt-6">

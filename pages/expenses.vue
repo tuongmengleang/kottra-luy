@@ -1,101 +1,3 @@
-<script lang="ts" setup>
-import { Switch } from '@headlessui/vue'
-import { useForm, useField } from 'vee-validate'
-import * as yup from 'yup'
-import { Expenses } from '~/types/expenses'
-
-definePageMeta({
-  layout: 'page',
-  middleware: 'auth',
-})
-
-const nuxtApp = useNuxtApp()
-const client = useSupabaseClient()
-const user = useSupabaseUser()
-
-// Binding Data
-const active = ref(false)
-const errorSubmit = ref(false)
-// Binding Form
-const currency = ref(false)
-const page = ref(0)
-const limit = ref(9)
-
-const { handleSubmit, resetForm, isSubmitting } = useForm()
-const { value: amount, errorMessage: errorMessageAmount } = useField(
-  'amount',
-  yup.string().required()
-)
-const { value: cash_on, errorMessage: errorMessageCashOn } = useField(
-  'cash_on',
-  yup.string().required()
-)
-
-// ******* Functions
-const openDialog = () => {
-  active.value = true
-  resetForm()
-}
-const onSubmit = handleSubmit(async (values) => {
-  errorSubmit.value = false
-  const { error } = await client.from('expenses').insert([
-    {
-      user_id: user.value.id,
-      amount: values.amount,
-      cash_on: values.cash_on,
-      currency: currency.value ? 1 : 0,
-    },
-  ])
-  if (error) errorSubmit.value = true
-  else {
-    page.value = 0
-    refresh()
-    active.value = false
-    resetForm()
-  }
-})
-
-// Edit Expenses
-const editRow = (expenses: any) => {
-  amount.value = expenses.amount
-  cash_on.value = expenses.cash_on
-  currency.value = expenses.currency
-  active.value = true
-}
-
-// ******* Fetch Data
-// *** Fetch Categories List
-const { data: expenses, refresh } = await useAsyncData('expenses', async () => {
-  const { from, to } = nuxtApp.$getPagination(page.value, limit.value)
-  const { data, count } = await client
-    .from<Expenses>('expenses')
-    .select('amount, cash_on, currency', { count: 'exact' })
-    .eq('user_id', user.value.id)
-    .order('created_at', { ascending: false })
-    .range(from, to)
-  return { data, count }
-})
-const pagination: any = nuxtApp.$pagination(expenses.value.count, limit.value)
-
-const changePagination = (pagination: number) => {
-  page.value = pagination
-  refresh()
-}
-
-const next = () => {
-  if (pagination[pagination.length - 1].page - 1 > page.value) {
-    page.value++
-    refresh()
-  }
-}
-const prev = () => {
-  if (page.value > 0) {
-    page.value--
-    refresh()
-  }
-}
-</script>
-
 <template>
   <PageWrapper>
     <PageHeader>
@@ -108,9 +10,6 @@ const prev = () => {
         <div class="mt-4 dark:border-gray-500 rounded-lg overflow-hidden">
           <!-- Header Table -->
           <div class="w-full flex items-center p-5">
-            <!--            <div class="text-xl text-black dark:text-white font-semibold">-->
-            <!--              <h1>{{ $t('pages.expenses.title') }} List</h1>-->
-            <!--            </div>-->
             <div class="flex items-center gap-5 ml-auto">
               <Button size="md">
                 <svg
@@ -152,14 +51,14 @@ const prev = () => {
           </div>
 
           <!-- Table -->
-          <table class="w-full">
+          <table class="w-full" :class="{ loading: pending }">
             <thead class="border-b border-gray-300">
               <tr>
-                <th class="py-3 px-3">No</th>
+                <th class="py-3 px-3">Date</th>
                 <th>Amount</th>
                 <th>Cash On</th>
                 <th>Currency</th>
-                <th class="w-30"></th>
+                <th class="w-30">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -168,7 +67,7 @@ const prev = () => {
                 :key="index"
                 class="text-center hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg"
               >
-                <td>{{ index + 1 }}</td>
+                <th>{{ $formatDate(item.created_at) }}</th>
                 <td>{{ item.amount }}</td>
                 <td>{{ item.cash_on }}</td>
                 <td>
@@ -188,6 +87,7 @@ const prev = () => {
                     type="button"
                     title="Delete"
                     class="p-1 rounded-full text-black dark:text-white hover:bg-red-200 hover:text-red-500 focus:bg-red-200 focus:text-red-500"
+                    @click="deleteRow(item.id)"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +250,7 @@ const prev = () => {
         </div>
       </div>
 
-      <!-- Dialog  -->
+      <!-- Dialog Add | Edit  -->
       <Dialog v-model="active">
         <template #dialog-title>
           <h1 class="text-lg font-bold">Add Expenses</h1>
@@ -419,10 +319,10 @@ const prev = () => {
 
             <!-- currency field -->
             <div class="form-control">
-              <label for="currency" class="label cursor-pointer">
+              <label class="label cursor-pointer">
                 <span class="label-text">Currency</span>
               </label>
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 text-gray-500">
                 <span>KHR</span>
                 <Switch
                   v-model="currency"
@@ -461,6 +361,186 @@ const prev = () => {
           >
         </template>
       </Dialog>
+
+      <Dialog v-model="active2">
+        <template #dialog-content>
+          <div class="w-full text-center">
+            <IconHeroicons-outline:trash
+              class="text-red-500 text-4xl mx-auto mb-4"
+            />
+            <h3 class="text-xl text-gray-600 font-semibold">
+              Are you sure you want to <br />
+              permanently erase the item in the Bin?
+            </h3>
+            <p class="text-sm text-gray-400 mt-3">
+              You can't undo this action.
+            </p>
+          </div>
+        </template>
+        <template #dialog-footer>
+          <Button
+            type="button"
+            color="secondary"
+            size="md"
+            class="w-full"
+            @click="active2 = false"
+            >Cancel</Button
+          >
+          <Button
+            type="button"
+            color="primary"
+            size="md"
+            class="w-full"
+            :loading="loadingDelete"
+            @click="onDelete"
+            >Confirm</Button
+          >
+        </template>
+      </Dialog>
     </PageBody>
   </PageWrapper>
 </template>
+
+<script lang="ts" setup>
+import { Switch } from '@headlessui/vue'
+import { useForm, useField } from 'vee-validate'
+import * as yup from 'yup'
+import { Expenses } from '~/types/expenses'
+
+definePageMeta({
+  layout: 'page',
+  middleware: 'auth',
+})
+
+const nuxtApp = useNuxtApp()
+const client = useSupabaseClient()
+const user = useSupabaseUser()
+
+// Binding Data
+const active = ref(false)
+const active2 = ref(false)
+const errorSubmit = ref(false)
+const status = ref(0)
+// Binding Form
+const id = ref('')
+const currency = ref(false)
+const page = ref(0)
+const limit = ref(9)
+
+// ******* Fetch Data ************ //
+const {
+  data: expenses,
+  refresh,
+  pending,
+} = await useAsyncData('expenses', async () => {
+  const { from, to } = nuxtApp.$getPagination(page.value, limit.value)
+  const { data, count } = await client
+    .from<Expenses>('expenses')
+    .select('id, amount, cash_on, currency, created_at', { count: 'exact' })
+    .eq('user_id', user.value.id)
+    .order('created_at', { ascending: false })
+    .range(from, to)
+  return { data, count }
+})
+
+// ******* Pagination ************ //
+const pagination: any = nuxtApp.$pagination(expenses.value.count, limit.value)
+const changePagination = (pagination: number) => {
+  page.value = pagination
+  refresh()
+}
+
+const next = () => {
+  if (pagination[pagination.length - 1].page - 1 > page.value) {
+    page.value++
+    refresh()
+  }
+}
+const prev = () => {
+  if (page.value > 0) {
+    page.value--
+    refresh()
+  }
+}
+
+// ******* Add Or Edit ************ //
+const { handleSubmit, resetForm, isSubmitting } = useForm()
+const { value: amount, errorMessage: errorMessageAmount } = useField(
+  'amount',
+  yup.string().required()
+)
+const { value: cash_on, errorMessage: errorMessageCashOn } = useField(
+  'cash_on',
+  yup.string().required()
+)
+
+// ******* Functions
+const openDialog = () => {
+  active.value = true
+  status.value = 0
+  resetForm()
+}
+
+const onSubmit = handleSubmit(async (values) => {
+  errorSubmit.value = false
+  if (status.value === 0) {
+    const { error } = await client.from('expenses').insert([
+      {
+        user_id: user.value.id,
+        amount: values.amount,
+        cash_on: values.cash_on,
+        currency: currency.value ? 1 : 0,
+      },
+    ])
+    if (error) errorSubmit.value = true
+    else {
+      page.value = 0
+      refresh()
+      active.value = false
+      resetForm()
+    }
+  } else {
+    const { error } = await client
+      .from('expenses')
+      .update({
+        amount: values.amount,
+        cash_on: values.cash_on,
+        currency: currency.value ? 1 : 0,
+      })
+      .eq('id', id.value)
+    if (error) errorSubmit.value = true
+    else {
+      refresh()
+      active.value = false
+      resetForm()
+    }
+  }
+})
+
+const editRow = (expenses: any) => {
+  status.value = 1
+  id.value = expenses.id
+  amount.value = expenses.amount
+  cash_on.value = expenses.cash_on
+  currency.value = expenses.currency === 1
+  active.value = true
+}
+
+// ******* Delete ************ //
+const loadingDelete = ref(false)
+const deleteRow = (uuid: string) => {
+  active2.value = true
+  id.value = uuid
+}
+const onDelete = async () => {
+  loadingDelete.value = true
+  const { error } = await client
+    .from('expenses')
+    .delete()
+    .match({ id: id.value })
+  if (error) alert('Something went wrong! please try again.')
+  loadingDelete.value = false
+  active2.value = false
+  refresh()
+}
+</script>

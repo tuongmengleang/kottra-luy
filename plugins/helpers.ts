@@ -26,6 +26,16 @@ export default defineNuxtPlugin(() => {
         )
         return result
       },
+
+      formatDate: (date: Date) => {
+        function pad(s: any) {
+          return s < 10 ? '0' + s : s
+        }
+        const d = new Date(date)
+        return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join(
+          '/'
+        )
+      },
     },
   }
 })

@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     'IconGg:profile': typeof import('~icons/gg/profile')['default']
     'IconHeroiconsOutline:dotsVertical': typeof import('~icons/heroicons-outline/dots-vertical')['default']
     'IconHeroiconsOutline:fire': typeof import('~icons/heroicons-outline/fire')['default']
+    'IconHeroiconsOutline:trash': typeof import('~icons/heroicons-outline/trash')['default']
     'IconHeroiconsSolid:logout': typeof import('~icons/heroicons-solid/logout')['default']
     'IconTabler:wallet': typeof import('~icons/tabler/wallet')['default']
     'IconUil:moneyInsert': typeof import('~icons/uil/money-insert')['default']
