@@ -27,15 +27,39 @@ export default defineNuxtPlugin(() => {
         return result
       },
 
+      // formatDate: (date: Date) => {
+      //   function pad(s: any) {
+      //     return s < 10 ? '0' + s : s
+      //   }
+      //   const d = new Date(date)
+      //   return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join(
+      //     '/'
+      //   )
+      // },
+
       formatDate: (date: Date) => {
-        function pad(s: any) {
-          return s < 10 ? '0' + s : s
-        }
         const d = new Date(date)
-        return [pad(d.getMonth() + 1), pad(d.getDate()), d.getFullYear()].join(
-          '/'
-        )
+        const month = (d.getMonth() + 1).toString().padStart(2, '0')
+        const day = d.getDate().toString().padStart(2, '0')
+        const year = d.getFullYear()
+        return [year, month, day].join('-')
       },
+
+      currentMonth: () => {
+        const now = new Date()
+        const first = new Date(now.getFullYear(), now.getMonth(), 1)
+        const last = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+        return { first, last }
+      },
+
+      // sumGroup: (list: []) => {
+      //   return list.reduce(
+      //     (a: any, { currency, amount }) => (
+      //       (a[currency] = (a[currency] || 0) + amount), a
+      //     ),
+      //     {}
+      //   )
+      // },
     },
   }
 })

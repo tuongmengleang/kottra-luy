@@ -614,6 +614,30 @@
     unimport "^0.2.7"
     untyped "^0.4.4"
 
+"@nuxt/kit@npm:@nuxt/kit-edge@latest":
+  version "3.0.0-rc.4-27621410.b045b71"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit-edge/-/kit-edge-3.0.0-rc.4-27621410.b045b71.tgz#023568a4f093aa920b74398b5f8e32f0cbe50e9b"
+  integrity sha512-YAA+U48JTHaxBjiDi9Z8MM2uBWL/t8NbXQjwrLfTlSIVu96GEaIR8RBAj1UeskUp4Lg1XF/d3W3HLTixwqouMw==
+  dependencies:
+    "@nuxt/schema" "npm:@nuxt/schema-edge@3.0.0-rc.4-27621410.b045b71"
+    c12 "^0.2.8"
+    consola "^2.15.3"
+    defu "^6.0.0"
+    globby "^13.1.2"
+    hash-sum "^2.0.0"
+    ignore "^5.2.0"
+    jiti "^1.14.0"
+    knitwork "^0.1.2"
+    lodash.template "^4.5.0"
+    mlly "^0.5.4"
+    pathe "^0.3.2"
+    pkg-types "^0.3.3"
+    scule "^0.2.1"
+    semver "^7.3.7"
+    unctx "^1.1.4"
+    unimport "^0.4.3"
+    untyped "^0.4.4"
+
 "@nuxt/schema@^3.0.0-rc.1", "@nuxt/schema@^3.0.0-rc.3", "@nuxt/schema@^3.0.0-rc.4":
   version "3.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.0.0-rc.4.tgz#d94005e1aca00349f1256cb827ee7478d50a1802"
@@ -629,6 +653,22 @@
     std-env "^3.1.1"
     ufo "^0.8.4"
     unimport "^0.2.7"
+
+"@nuxt/schema@npm:@nuxt/schema-edge@3.0.0-rc.4-27621410.b045b71":
+  version "3.0.0-rc.4-27621410.b045b71"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema-edge/-/schema-edge-3.0.0-rc.4-27621410.b045b71.tgz#2b95127f75a9237a251d4ff5189dbbd13ea5aeec"
+  integrity sha512-8505RUmhb4oso0dVGQmx4+9boGFkO9F1KzA83lPrh6rzmdyIWDfbv4evo9w5NY307Ju+grz625YtNhtwCEtkQw==
+  dependencies:
+    c12 "^0.2.8"
+    create-require "^1.1.1"
+    defu "^6.0.0"
+    jiti "^1.14.0"
+    pathe "^0.3.2"
+    postcss-import-resolver "^2.0.0"
+    scule "^0.2.1"
+    std-env "^3.1.1"
+    ufo "^0.8.5"
+    unimport "^0.4.3"
 
 "@nuxt/telemetry@^2.1.3":
   version "2.1.3"
@@ -1711,7 +1751,7 @@ bundle-runner@^0.0.1:
   dependencies:
     source-map "^0.7.3"
 
-c12@^0.2.7:
+c12@^0.2.7, c12@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/c12/-/c12-0.2.8.tgz#6aa897fc9550d88f22e892419c3c3def2b174130"
   integrity sha512-JomSyVwGnqndRdVVW6SGnHUeHIfJFQNe/4zPFK6zLKPQm8US+hNr4kZP7xeNnzjn3jnQUsBbPdT85fm8K5Pr4A==
@@ -5271,6 +5311,13 @@ nuxi@^3.0.0-rc.4:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxt-icons@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/nuxt-icons/-/nuxt-icons-2.0.1.tgz#e94923b9cd1c536138bcca7f9061bf538f286403"
+  integrity sha512-V42PZF0DYUnff6KuFLnbzd09/Q4q6863dmJn6FZ5sPysIix9I2Jm4SMQhKQl2ODKjvsHDPtcTw3kQ0JIwPbXXQ==
+  dependencies:
+    "@nuxt/kit" "npm:@nuxt/kit-edge@latest"
+
 nuxt-windicss@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/nuxt-windicss/-/nuxt-windicss-2.4.2.tgz#c46a08b6d4c9ef0e24be31d73346bc76aea4d7a4"
@@ -7338,6 +7385,11 @@ ufo@^0.8.3, ufo@^0.8.4:
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.8.4.tgz#23e9ed82398d2116dcb378e8fba5ced8eca2ee40"
   integrity sha512-/+BmBDe8GvlB2nIflWasLLAInjYG0bC9HRnfEpNi4sw77J2AJNnEVnTDReVrehoh825+Q/evF3THXTAweyam2g==
 
+ufo@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.8.5.tgz#e367b4205ece9d9723f2fa54f887d43ed1bce5d0"
+  integrity sha512-e4+UtA5IRO+ha6hYklwj6r7BjiGMxS0O+UaSg9HbaTefg4kMkzj4tXzEBajRR+wkxf+golgAWKzLbytCUDMJAA==
+
 unbox-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz#29032021057d5e6cdbd08c5129c226dff8ed6f9e"
@@ -7413,6 +7465,22 @@ unimport@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.4.1.tgz#5ee9bff191faeca186a9d6be300fe3305994937e"
   integrity sha512-0j7Xk55XOR33f+4hHGva1pauchJEn6QNcjYvmB8bu1UnSphYfOmGlGUfhFa/uzA5JqWJqFkvLU192VXwj4ZU4A==
+  dependencies:
+    "@rollup/pluginutils" "^4.2.1"
+    escape-string-regexp "^5.0.0"
+    fast-glob "^3.2.11"
+    local-pkg "^0.4.1"
+    magic-string "^0.26.2"
+    mlly "^0.5.4"
+    pathe "^0.3.2"
+    scule "^0.2.1"
+    strip-literal "^0.4.0"
+    unplugin "^0.7.1"
+
+unimport@^0.4.3:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.4.4.tgz#bad162e57d4419761cd2e9c9f26a09a4fbf4149e"
+  integrity sha512-gYWGl4LUIasAbV7PXCaByuB6NcerrHRIRICooXtAFI7JCGY74CYGVq080P/yg7C4AYs+RYuJQdYsaRAJvG7bsQ==
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     escape-string-regexp "^5.0.0"
