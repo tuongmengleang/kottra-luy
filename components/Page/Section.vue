@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4">
+  <section class="py-4">
     <slot />
-  </div>
+  </section>
 </template>

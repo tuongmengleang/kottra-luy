@@ -1,4 +1,6 @@
 import { defineNuxtPlugin } from '#app'
+import { Expenses } from '~/types/expenses'
+
 export default defineNuxtPlugin(() => {
   return {
     provide: {
@@ -52,14 +54,18 @@ export default defineNuxtPlugin(() => {
         return { first, last }
       },
 
-      // sumGroup: (list: []) => {
-      //   return list.reduce(
-      //     (a: any, { currency, amount }) => (
-      //       (a[currency] = (a[currency] || 0) + amount), a
-      //     ),
-      //     {}
-      //   )
-      // },
+      groupByCurrency: (arr: Array<Expenses>) => {
+        const result: [] = []
+        arr.reduce((res, value) => {
+          if (!res[value.currency]) {
+            res[value.currency] = { currency: value.currency, amount: 0 }
+            result.push(res[value.currency])
+          }
+          res[value.currency].amount += value.amount
+          return res
+        })
+        return result
+      },
     },
   }
 })
