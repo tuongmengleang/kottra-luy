@@ -49,9 +49,20 @@ export default defineNuxtPlugin(() => {
 
       currentMonth: () => {
         const now = new Date()
-        const first = new Date(now.getFullYear(), now.getMonth(), 1)
-        const last = new Date(now.getFullYear(), now.getMonth() + 1, 0)
-        return { first, last }
+        return {
+          start:
+            now.getFullYear() +
+            '-' +
+            (now.getMonth() + 1).toString().padStart(2, '0') +
+            '-' +
+            '01',
+          end:
+            now.getFullYear() +
+            '-' +
+            (now.getMonth() + 1).toString().padStart(2, '0') +
+            '-' +
+            '31',
+        }
       },
 
       groupByCurrency: (arr: Array<Expenses>) => {

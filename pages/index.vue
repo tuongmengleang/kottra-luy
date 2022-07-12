@@ -84,14 +84,21 @@ definePageMeta({
 const nuxtApp = useNuxtApp()
 
 const client = useSupabaseClient()
-const { data: expenses } = await useAsyncData('count', async () => {
+const user = useSupabaseUser()
+
+const month = nuxtApp.$currentMonth()
+const { data: expenses, refresh } = await useAsyncData('count', async () => {
   const { data } = await client
     .from<Expenses>('expenses')
-    .select('amount, currency')
+    .select('amount, currency, created_at')
+    .eq('user_id', user.value.id)
+    .gte('created_at', month.start)
+    .lte('created_at', month.end)
   const total = nuxtApp.$groupByCurrency(data)
   return { data, total }
 })
-// console.log('useAsyncData :', expenses.value)
-// const data = nuxtApp.$groupByCurrency(expenses.value)
-// console.log('data :', data)
+
+onMounted(() => {
+  refresh()
+})
 </script>
